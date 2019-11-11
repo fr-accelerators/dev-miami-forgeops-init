@@ -28,7 +28,7 @@
 					},
 					"type": "StaticResponseHandler"
 			  },
-              "scanInterval": "disabled",
+              "scanInterval": 1,
               "directory": "${openig.configDirectory}/routes-service"
             }
           }
