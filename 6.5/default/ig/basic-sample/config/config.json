@@ -17,9 +17,17 @@
         {
           "condition": "${request.uri.host != env['MY_POD_IP']}",
           "handler": {
-            "name": "router-service",
+            "name": "_router",
             "type": "Router",
             "config": {
+			  "defaultHandler": {
+					"config": {
+					  "entity": "Message from ConfigJson.MyMainRouter.defaultHandler",
+					  "reason": "found",
+					  "status": 200
+					},
+					"type": "StaticResponseHandler"
+			  },
               "scanInterval": "disabled",
               "directory": "${openig.configDirectory}/routes-service"
             }
