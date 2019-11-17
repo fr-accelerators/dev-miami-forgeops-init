@@ -1,7 +1,7 @@
 {
-  "name": "Legacy AM Generic Route",
+  "name": "Legacy AM Authenticate Route",
   "baseURI": "https://as.legacy.miami-accelerators.com",
-  "condition": "${matches(request.uri.path, '^(/UI|/XUI|/oauth2|/json|/openam)')}",
+  "condition": "${matches(request.uri.path, '^/openam/json/realms/root/realms/legacy/authenticate')}",
   "capture": [
     "response",
     "request"
@@ -59,6 +59,15 @@
                 "as.legacy.miami-accelerators.com"
               ]
             }
+          }
+        },
+        {
+          "name": "HeaderAuthenticationProvisioningFilter",
+          "type": "HeaderAuthenticationProvisioningFilter",
+          "config": {
+            "idmURL": "https://idm.dev.miami-accelerators.com/openidm/managed/user?_action=create",
+            "openIdmPassword": "openidm-admin",
+            "openIdmUsername": "openidm-admin"
           }
         }
       ],
