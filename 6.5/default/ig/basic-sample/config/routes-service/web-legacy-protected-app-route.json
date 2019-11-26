@@ -1,7 +1,7 @@
 {
-  "name": "J2EE Legacy Protected App",
+  "name": "Web Legacy Protected App",
   "baseURI": "https://miamitest.frdpcloud.com",
-  "condition": "${matches(request.uri.path, '^(/apps/j2ee|/shared|/apps/frdp/rest/apps/j2ee|/apps/frdp/themes/default/apps/j2ee)')}",
+  "condition": "${matches(request.uri.path, '^(/web|/agent|/apps/frdp/rest/apps/web|/apps/frdp/themes/default/apps/web/css/|/apps/frdp/themes/default/apps/web/images/)')}",
   "capture": [
     "response",
     "request"
@@ -52,7 +52,7 @@
       "name": "ReverseProxyHandler",
       "type": "ReverseProxyHandler",
       "config": {
-        "connectionTimeout": "60 seconds",
+        "connectionTimeout": "120 seconds",
         "soTimeout": "unlimited"
       },
       "capture": [

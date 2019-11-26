@@ -1,7 +1,7 @@
 {
-  "name": "Legacy AM Generic Route",
-  "baseURI": "https://as.legacy.miami-accelerators.com",
-  "condition": "${matches(request.uri.path, '^(/UI|/XUI|/oauth2|/json|/openam)')}",
+  "name": "Agent Legacy Protected App",
+  "baseURI": "https://miamitest.frdpcloud.com",
+  "condition": "${matches(request.uri.path, '^(/charlieagentapp)')}",
   "capture": [
     "response",
     "request"
@@ -13,30 +13,9 @@
       "type": "Chain",
       "config": {
         "filters": [
-          "HeaderFilter-ChangeHost-1",
-          "ChangeLocationFilter-Response",
           "ChangeLocationFilter-Response"
         ],
         "handler": "ReverseProxyHandler"
-      }
-    },
-    {
-      "name": "HeaderFilter-ChangeHost-1",
-      "type": "HeaderFilter",
-      "config": {
-        "messageType": "REQUEST",
-        "remove": [
-          "host",
-          "x-forwarded-host"
-        ],
-        "add": {
-          "host": [
-            "as.legacy.miami-accelerators.com"
-          ],
-          "x-forwarded-host": [
-            "as.legacy.miami-accelerators.com"
-          ]
-        }
       }
     },
     {

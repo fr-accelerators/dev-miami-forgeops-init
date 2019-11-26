@@ -1,7 +1,7 @@
 {
   "name": "Legacy AM Authenticate Route",
   "baseURI": "https://as.legacy.miami-accelerators.com",
-  "condition": "${matches(request.uri.path, '^/openam/json/realms/root/realms/legacy/authenticate')}",
+  "condition": "${matches(request.uri.path, '/json/realms/root/realms/legacy/authenticate')}",
   "capture": [
     "response",
     "request"
@@ -10,6 +10,10 @@
     {
       "name": "ReverseProxyHandler",
       "type": "ReverseProxyHandler",
+      "config": {
+        "connectionTimeout": "60 seconds",
+        "soTimeout": "unlimited"
+      },
       "capture": [
         "response",
         "request"
@@ -65,9 +69,11 @@
           "name": "HeaderAuthenticationProvisioningFilter",
           "type": "HeaderAuthenticationProvisioningFilter",
           "config": {
-            "idmURL": "https://idm.dev.miami-accelerators.com/openidm/managed/user?_action=create",
+            "idmURL": "https://idm.dev.miami-accelerators.com",
             "openIdmPassword": "openidm-admin",
-            "openIdmUsername": "openidm-admin"
+            "openIdmUsername": "openidm-admin",
+            "openaAmAuthenticateURL": "https://am.dev.miami-accelerators.com/json/realms/root/authenticate",
+            "legacyEnvURL": "https://ig.dev.miami-accelerators.com/openam"
           }
         }
       ],
